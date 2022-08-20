@@ -49,7 +49,7 @@ var createWeatherInfo = function (info, city) {
 var createFiveDay = function (info) {
     var fiveDayContainer = $("#five-day")
 
-    for (var i = 1; i <= 5; i++){
+    for (var i = 1; i <= 5; i++) {
         var oneDayContainer = $("<div>")
         oneDayContainer.addClass("col-2 mx-1 bg-info")
 
@@ -64,13 +64,20 @@ var createFiveDay = function (info) {
 
         var humidity = $("<div>").text("Humidity: " + info.daily[i].humidity)
         oneDayContainer.append(humidity)
-    
+
         fiveDayContainer.append(oneDayContainer)
     }
-    
-    }
+
+}
+
+$("#city-search").on("submit", function(event){
+    event.preventDefault();
+
+    var cityName = $("#city-input").val().trim()
+    getWeatherInfo(cityName)
+})
 
 
 
-getWeatherInfo("charlotte")
+
 

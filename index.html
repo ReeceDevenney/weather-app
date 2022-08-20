@@ -11,15 +11,16 @@
 </head>
 
 <body>
-    <header></header>
+    <header class="text-center bg-info mb-5">Weather Forcaster</header>
 
-    <div class="content-container row">
+    <div class="content-container row justify-content-center">
         <form class="search-form col-3 bg-danger">
-            <input type="text" name="" id="">
-            <button>Submit</button>
+            <input type="text" name="city-search" id="city-search" class="w-100 rounded">
+            <div class="btn-info rounded text-center">Submit</div>
         </form>
-        <div class="results col-9">
-            <p>test</p>
+        <div id="results-container" class="col-8 p-0">
+            <div id="current-result" class="bg-info">test</div>
+            <div id="five-days" class="bg-secondary">test</div>
         </div>
     </div>
 

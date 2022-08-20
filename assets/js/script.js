@@ -18,6 +18,9 @@ var getWeatherInfo = function (city) {
 var createWeatherInfo = function(info){
     var currentContainer = $("#current-result")
     
+    var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.current.weather[0].icon +"@2x.png")
+    currentContainer.append(img)
+    
     var temp = $("<div>").text("Temperature: " + info.current.temp)
     currentContainer.append(temp)
 
@@ -28,10 +31,17 @@ var createWeatherInfo = function(info){
     currentContainer.append(humidity)
 
     var uvi = $("<div>").text("UVI: " + info.current.uvi)
+    uvi.removeClass("bg-danger bg-warning bg-success")
+    if (info.current.uvi < 3) {
+        uvi.addClass("bg-success")
+    } else if (info.current.uvi >= 3 && info.current.uvi <=8 ){
+        uvi.addClass("bg-warning")
+    } else {
+        uvi.addClass("bg-danger")
+    }
     currentContainer.append(uvi)
+    }
 
-    console.log(uvi)
-}
 
 getWeatherInfo("charlotte")
 

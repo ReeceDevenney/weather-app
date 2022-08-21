@@ -52,7 +52,10 @@ var createWeatherInfo = function (info, city) {
     var humidity = $("<div>").text("Humidity: " + info.current.humidity + "%")
     currentContainer.append(humidity)
 
-    var uvi = $("<div>").text("UVI: " + info.current.uvi)
+    var uvi = $("<a>").text("UVI: " + info.current.uvi)
+    uvi.attr("href", "https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index#:~:text=What%20is%20the%20UV%20index,takes%20for%20harm%20to%20occur.")
+    uvi.attr("target", "_blank")
+    uvi.addClass("btn")
     uvi.removeClass("bg-danger bg-warning bg-success")
     if (info.current.uvi < 3) {
         uvi.addClass("bg-success")
@@ -70,9 +73,10 @@ var createFiveDay = function (info) {
 
     for (var i = 1; i <= 5; i++) {
         var oneDayContainer = $("<div>")
-        oneDayContainer.addClass("col-2 mx-2 bg-info rounded")
+        oneDayContainer.addClass("col-2 mx-2 bg-info rounded justify-content-center text-center")
 
         var date = $("<h6>").text(moment().add(i + 1, "days").format("L"))
+        date.addClass("justify-content-center")
         oneDayContainer.append(date)
 
         var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.daily[i].weather[0].icon + "@2x.png")

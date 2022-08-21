@@ -3,15 +3,20 @@ var getWeatherInfo = function (city) {
 
     fetch(apiURL).then(function (response) {
         response.json().then(function (data) {
-            console.log(data)
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
-                .then(function (res) {
-                    res.json().then(function (data) {
-                        console.log(data)
-                        createWeatherInfo(data, city)
-                        createFiveDay(data)
+            if (response.ok) {
+                pastSearchBtn(data.name)
+                console.log(data)
+                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
+                    .then(function (res) {
+                        res.json().then(function (data) {
+                            console.log(data)
+                            createWeatherInfo(data, city)
+                            createFiveDay(data)
+                            
+                        })
                     })
-                })
+            }
+
         })
     })
 }
@@ -73,20 +78,22 @@ var createFiveDay = function (info) {
 
 }
 
-$("#city-search").on("submit", function(event){
+$("#city-search").on("submit", function (event) {
     event.preventDefault();
 
     var cityName = $("#city-input").val().trim()
     getWeatherInfo(cityName)
-
-    var pastSearchContainer = $("#past-seraches")
-    var pastSearch = $("<button>").text(cityName.toUpperCase()).addClass("btn-secondary rounded text-dark text-center my-1 w-100 prev-search")
-    pastSearchContainer.append(pastSearch)
 })
 
-$("#past-seraches").on("click", ".prev-search",function(event){
-   event.preventDefault();
+var pastSearchBtn = function (cityName) {
+    var pastSearchContainer = $("#past-seraches")
+    var pastSearch = $("<button>").text(cityName).addClass("btn-secondary rounded text-dark text-center my-1 w-100 prev-search")
+    pastSearchContainer.append(pastSearch)
+}
 
-   var cityName = $($(this)).text().trim()
-   getWeatherInfo(cityName)
+$("#past-seraches").on("click", ".prev-search", function (event) {
+    event.preventDefault();
+
+    var cityName = $($(this)).text().trim()
+    getWeatherInfo(cityName)
 })

@@ -34,6 +34,9 @@ var createWeatherInfo = function (info, city) {
 
     currentContainer.children().remove()
 
+    var date = $("<h2>").text(moment().format("L"))
+    currentContainer.append(date)
+
     var cityName = $("<h3>").text(city.toUpperCase())
     currentContainer.append(cityName)
 
@@ -68,6 +71,9 @@ var createFiveDay = function (info) {
     for (var i = 1; i <= 5; i++) {
         var oneDayContainer = $("<div>")
         oneDayContainer.addClass("col-2 mx-2 bg-info rounded")
+
+        var date = $("<h6>").text(moment().add(i + 1, "days").format("L"))
+        oneDayContainer.append(date)
 
         var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.daily[i].weather[0].icon + "@2x.png")
         oneDayContainer.append(img)

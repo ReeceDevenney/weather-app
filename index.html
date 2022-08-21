@@ -14,14 +14,18 @@
     <header class="text-center bg-info mb-5">Weather Forcaster</header>
 
     <div class="content-container row justify-content-center">
-        <form id="city-search" class="search-form col-3 bg-danger mx">
-            <input type="text" name="city-search" id="city-input" class="w-100 rounded">
-            <button class="btn-info rounded text-center">Submit</button>
-        </form>
+        <div class="col-3 mx">
+            <form id="city-search" class="search-form">
+                <input type="text" name="city-search" id="city-input" class="w-100 rounded">
+                <button class="btn-info rounded text-center w-100 mb-5">Submit</button>
+            </form>
+            <div id="past-seraches"></div>
+        </div>
+        
         <div id="results-container" class="col-8 mx">
             <div>
                 <h2>TODAY'S WEATHER:</h2>
-                <div id="current-result" class="bg-info"></div>
+                <div id="current-result" class="border border-info rounded py-3"></div>
             </div>
             <div>
                 <h2>FIVE DAY FORCAST:</h2>

@@ -19,6 +19,8 @@ var getWeatherInfo = function (city) {
 var createWeatherInfo = function (info, city) {
     var currentContainer = $("#current-result")
 
+    currentContainer.children().remove()
+
     var cityName = $("<h3>").text(city.toUpperCase())
     currentContainer.append(cityName)
 
@@ -48,10 +50,11 @@ var createWeatherInfo = function (info, city) {
 
 var createFiveDay = function (info) {
     var fiveDayContainer = $("#five-day")
+    fiveDayContainer.children().remove()
 
     for (var i = 1; i <= 5; i++) {
         var oneDayContainer = $("<div>")
-        oneDayContainer.addClass("col-2 mx-1 bg-info")
+        oneDayContainer.addClass("col-2 mx-2 bg-info rounded")
 
         var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.daily[i].weather[0].icon + "@2x.png")
         oneDayContainer.append(img)
@@ -75,9 +78,15 @@ $("#city-search").on("submit", function(event){
 
     var cityName = $("#city-input").val().trim()
     getWeatherInfo(cityName)
+
+    var pastSearchContainer = $("#past-seraches")
+    var pastSearch = $("<button>").text(cityName.toUpperCase()).addClass("btn-secondary rounded text-dark text-center my-1 w-100 prev-search")
+    pastSearchContainer.append(pastSearch)
 })
 
+$("#past-seraches").on("click", ".prev-search",function(event){
+   event.preventDefault();
 
-
-
-
+   var cityName = $($(this)).text().trim()
+   getWeatherInfo(cityName)
+})

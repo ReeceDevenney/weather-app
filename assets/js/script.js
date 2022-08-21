@@ -1,10 +1,18 @@
+citySearch = []
+
 var getWeatherInfo = function (city) {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=0e450fa9a4e7801cd2fc1c5ae48d0e9c"
 
     fetch(apiURL).then(function (response) {
         response.json().then(function (data) {
             if (response.ok) {
-                pastSearchBtn(data.name)
+                if(citySearch.includes(data.name) === false) {
+                    pastSearchBtn(data.name)
+                    citySearch.push(data.name)
+                }
+
+                localStorage.setItem("citySearch", JSON.stringify(citySearch))
+                console.log(citySearch)
                 console.log(data)
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
                     .then(function (res) {
@@ -83,6 +91,8 @@ $("#city-search").on("submit", function (event) {
 
     var cityName = $("#city-input").val().trim()
     getWeatherInfo(cityName)
+
+    $("#city-input").val("")
 })
 
 var pastSearchBtn = function (cityName) {
@@ -97,3 +107,15 @@ $("#past-seraches").on("click", ".prev-search", function (event) {
     var cityName = $($(this)).text().trim()
     getWeatherInfo(cityName)
 })
+
+var loadSave = function() {
+    var city = JSON.parse(localStorage.getItem("citySearch"))
+    if (city){
+        citySearch = JSON.parse(localStorage.getItem("citySearch"))
+        for (var i = 0; i < city.length; i++) {
+            pastSearchBtn(city[i])
+        }
+    }  
+}
+
+loadSave()

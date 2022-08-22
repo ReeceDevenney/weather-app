@@ -40,10 +40,10 @@ var createWeatherInfo = function (info, city) {
     var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.current.weather[0].icon + "@2x.png")
     currentContainer.append(img)
 
-    var temp = $("<div>").text("Temperature: " + info.current.temp)
+    var temp = $("<div>").text("Temperature: " + Math.floor(info.current.temp))
     currentContainer.append(temp)
 
-    var wind = $("<div>").text("Wind Speed: " + info.current.wind_speed + "MPH")
+    var wind = $("<div>").text("Wind Speed: " + Math.floor(info.current.wind_speed) + " MPH")
     currentContainer.append(wind)
 
     var humidity = $("<div>").text("Humidity: " + info.current.humidity + "%")
@@ -80,10 +80,10 @@ var createFiveDay = function (info) {
         var img = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + info.daily[i].weather[0].icon + "@2x.png")
         oneDayContainer.append(img)
 
-        var dayTemp = $("<div>").text("Temp: " + info.daily[i].temp.day)
+        var dayTemp = $("<div>").text("Temp: " + Math.floor(info.daily[i].temp.day))
         oneDayContainer.append(dayTemp)
 
-        var windSpeed = $("<div>").text("Wind: " + info.daily[i].wind_speed + "MPH")
+        var windSpeed = $("<div>").text("Wind: " + Math.floor(info.daily[i].wind_speed) + " MPH")
         oneDayContainer.append(windSpeed)
 
         var humidity = $("<div>").text("Humidity: " + info.daily[i].humidity + "%")

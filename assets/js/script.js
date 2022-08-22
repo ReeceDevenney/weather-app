@@ -50,7 +50,7 @@ var createWeatherInfo = function (info, city) {
     currentContainer.append(humidity)
 
     var uvi = $("<a>").text("UVI: " + info.current.uvi)
-    uvi.attr("href", "https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index#:~:text=What%20is%20the%20UV%20index,takes%20for%20harm%20to%20occur.")
+    uvi.attr("href", "https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index")
     uvi.attr("target", "_blank")
     uvi.addClass("btn")
     uvi.removeClass("bg-danger bg-warning bg-success")

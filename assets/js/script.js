@@ -73,7 +73,7 @@ var createFiveDay = function (info) {
         var oneDayContainer = $("<div>")
         oneDayContainer.addClass("col-2 mx-2 bg-info rounded justify-content-center text-center card")
 
-        var date = $("<h6>").text(moment().add(i + 1, "days").format("L"))
+        var date = $("<h6>").text(moment().add(i, "days").format("L"))
         date.addClass("card-header bg-light rounded")
         oneDayContainer.append(date)
 

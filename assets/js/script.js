@@ -52,7 +52,7 @@ var createWeatherInfo = function (info, city) {
     var uvi = $("<a>").text("UVI: " + info.current.uvi)
     uvi.attr("href", "https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index")
     uvi.attr("target", "_blank")
-    uvi.addClass("btn")
+    uvi.addClass("btn text-dark")
     uvi.removeClass("bg-danger bg-warning bg-success")
     //sets the bg color based on the UIV value
     if (info.current.uvi < 3) {

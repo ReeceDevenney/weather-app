@@ -13,7 +13,7 @@ var getWeatherInfo = function (city) {
                     citySearch.push(data.name)
                 }
                 localStorage.setItem("citySearch", JSON.stringify(citySearch))
-                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=8a42d43f7d7dc180da5b1e51890e67dc`)
+                fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&exclude=hourly,minutely,alerts&appid=0e450fa9a4e7801cd2fc1c5ae48d0e9c`)
                     .then(function (res) {
                         res.json().then(function (data) {
                             createWeatherInfo(data, city)
